@@ -1,27 +1,26 @@
 var http = require("http");
 var url = require("url");
-var twitter = require("./Twitter.js")
-
+var controller = require("./Controller.js").Controller;
 
 var server = http.createServer(function(req, res) {
-    var dataCallback = function(data) {
-        res.write(data);
-    };
-
-    var endCallback = function() {
-        res.end();
-    };
 
     res.writeHead(200, { 'content-type': 'text/plain'});
 
     var reqUrl = url.parse(req.url, true);
 
-    if (reqUrl.pathname == "/search") {
+    var pathname = reqUrl.pathname;
 
-        var twitterApi = new twitter.Twitter(reqUrl.query.term, dataCallback, endCallback);
-        twitterApi.searchTweets();
-	}
+    if (pathname == "/") {
+        pathname = "index";
+    } else {
+        pathname = pathname.substr(1);
+    }
 
+    if (controller.hasOwnProperty(pathname)) {
+        controller[pathname](req, res);
+    } else {
+        controller["error"](req, res);
+    }
 }).on('error', function(e) {
   console.log("Got error: " + e.message);
 }).listen(8888);
