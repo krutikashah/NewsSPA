@@ -14,6 +14,8 @@ var server = http.createServer(function(req, res) {
         pathname = "index";
     } else {
         pathname = pathname.substr(1);
+        var a = pathname.split('/');
+        pathname = a[0];
     }
 
     if (controller.hasOwnProperty(pathname)) {

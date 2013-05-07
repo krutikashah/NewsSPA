@@ -2,12 +2,22 @@
 <html>
 <head>
     <title></title>
-    <script src="http://requirejs.org/docs/release/2.1.1/minified/require.js" data-main="app"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://underscorejs.org/underscore.js"></script>
+    <script src="http://backbonejs.org/backbone.js"></script>
+    <script src="http://requirejs.org/docs/release/2.1.1/minified/require.js" data-main="public/app"></script>
+
 </head>
 <body>
-    <form>
-        <input type="text" id="text_hashtag"/>
-        <button id="searchTweet">Search Tweets</button>
-    </form>
+    <div id="overlay">
+        <form>
+            <input type="text" id="text_hashtag"/>
+            <input id="searchTweet" type="button" value="Search Tweets">
+        </form>
+    </div>
+
+    <div id="column">
+    </div>
+    <div id="columnarView"></div>
 </body>
 </html>
